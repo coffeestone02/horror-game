@@ -26,9 +26,9 @@ public partial class CheckTargetDetectCondition : Condition
             }
 
             Vector3 direction = (targetTransform.position - Self.Value.transform.position).normalized;
-            float angle = Vector3.Angle(Self.Value.transform.forward, direction); // AI와 타겟 사이의 각도를 계산
-            Debug.DrawRay(Self.Value.transform.position, direction, Color.red);
-            if (angle <= ViewAngle.Value * 0.5f) // 시야 범위 내에 있는지 확인
+            float angle = Vector3.Angle(Self.Value.transform.forward + Self.Value.transform.up * 1.0f, direction); // AI와 타겟 사이의 각도를 계산
+            Debug.DrawRay(Self.Value.transform.position + Self.Value.transform.up * 1.0f, direction, Color.red);
+            if (angle <= ViewAngle.Value * 0.5f) // 시야각 범위 내에 있는지 확인
             {
                 Debug.Log("플레이어 포착");
                 return true;
@@ -36,6 +36,7 @@ public partial class CheckTargetDetectCondition : Condition
             else
             {
                 Debug.Log("플레이어 못봄");
+                return false;
             }
 
             // 근처에서 달리면 true 반환하는 코드 작성해야함
