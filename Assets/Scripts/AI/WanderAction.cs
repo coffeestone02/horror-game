@@ -20,7 +20,7 @@ public partial class WanderAction : Action
     {
         int jitterMin = 0;
         int jitterMax = 360;
-        float wanderRadius = UnityEngine.Random.Range(2.5f, 6f);
+        float wanderRadius = UnityEngine.Random.Range(2.5f, 4f);
         int wanderJitter = UnityEngine.Random.Range(jitterMin, jitterMax);
 
         wanderPostion = Self.Value.transform.position + GetPositionFromAngle(wanderRadius, wanderJitter);

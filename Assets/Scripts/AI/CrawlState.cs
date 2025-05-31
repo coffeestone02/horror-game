@@ -1,10 +1,10 @@
+using System;
 using Unity.Behavior;
 
 [BlackboardEnum]
-public enum EnemyState
+public enum CrawlState
 {
-    Idle,
-	Patrol,
+    Patrol,
 	Chase,
 	Attack
 }
