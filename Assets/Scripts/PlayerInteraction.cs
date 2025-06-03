@@ -2,12 +2,12 @@ using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
 {
-    [Header("상호작용 설정")]
+    [Header("?????? ????")]
     public float interactRange = 3f;
     public LayerMask interactLayer;
     public Transform holdPoint;
 
-    [Header("획득 여부")]
+    [Header("??? ????")]
     public bool hasFirstItem = false;
     public bool hasSecondItem = false;
 
@@ -30,14 +30,14 @@ public class PlayerInteraction : MonoBehaviour
         {
             GameObject target = hit.collider.gameObject;
 
-            // 아이템 잡기
+            // ?????? ???
             if (heldItem == null && target.CompareTag("Item"))
             {
                 GrabItem(target);
                 return;
             }
 
-            // 문 텔레포트 (양방향)
+            // ?? ?????? (?????)
             if (target.CompareTag("Door"))
             {
                 DoorTeleport door = target.GetComponent<DoorTeleport>();
