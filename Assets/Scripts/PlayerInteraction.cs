@@ -37,7 +37,7 @@ public class PlayerInteraction : MonoBehaviour
                 return;
             }
 
-            // 문 텔레포트 (양방향)
+            // 문 텔레포트
             if (target.CompareTag("Door"))
             {
                 DoorTeleport door = target.GetComponent<DoorTeleport>();
@@ -47,6 +47,38 @@ public class PlayerInteraction : MonoBehaviour
                     if (tpTarget != null)
                     {
                         transform.position = tpTarget.position;
+                    }
+                }
+                return;
+            }
+
+            // 제단 상호작용
+            if (target.CompareTag("Altar"))
+            {
+                if (heldItem != null)
+                {
+                    AltarSlot slot = target.GetComponent<AltarSlot>();
+                    if (slot != null && heldItem.name == slot.requiredItemName)
+                    {
+                        // 공물 파괴
+                        Destroy(heldItem);
+                        heldItem = null;
+
+                        // bool 값 초기화
+                        if (slot.requiredItemName == "firstItem") hasFirstItem = false;
+                        else if (slot.requiredItemName == "secondItem") hasSecondItem = false;
+
+                        // 연출용 오브젝트 활성화
+                        if (slot.visualObject != null)
+                        {
+                            slot.visualObject.SetActive(true);
+                        }
+
+                        Debug.Log($"{slot.requiredItemName} successfully placed on altar.");
+                    }
+                    else
+                    {
+                        Debug.Log("Wrong item for this altar slot.");
                     }
                 }
             }

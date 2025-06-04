@@ -437,6 +437,7 @@ GameObject:
   - component: {fileID: 443069220}
   - component: {fileID: 443069219}
   - component: {fileID: 443069218}
+  - component: {fileID: 443069222}
   m_Layer: 7
   m_Name: AltarSlotA
   m_TagString: Altar
@@ -533,6 +534,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &443069222
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 443069217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2ef945501d1ec4baddd98e78f1cb42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItemName: firstItem
+  visualObject: {fileID: 951620278}
 --- !u!1 &444642071
 GameObject:
   m_ObjectHideFlags: 0
@@ -703,7 +718,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &639890509
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1193,6 +1208,7 @@ GameObject:
   - component: {fileID: 916880754}
   - component: {fileID: 916880753}
   - component: {fileID: 916880752}
+  - component: {fileID: 916880756}
   m_Layer: 7
   m_Name: AltarSlotB
   m_TagString: Altar
@@ -1289,6 +1305,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &916880756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 916880751}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2ef945501d1ec4baddd98e78f1cb42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredItemName: secondItem
+  visualObject: {fileID: 399189480}
 --- !u!1 &951620278
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,7 +1473,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!65 &1007217147
 BoxCollider:
   m_ObjectHideFlags: 0
