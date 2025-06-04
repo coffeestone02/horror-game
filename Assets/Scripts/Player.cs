@@ -7,7 +7,6 @@ public class Player : MonoBehaviour
     public float runSpeed = 10f;
     public float mouseSensitivity = 2f;
     public float jumpForce = 5f;
-    public float groundCheckDistance = 1.1f;
     public LayerMask groundMask;
 
     [Header("앉기 설정")]
@@ -23,6 +22,10 @@ public class Player : MonoBehaviour
     private Rigidbody rb;
     private float verticalRotation = 0f;
     private float targetHeight;
+
+    // 점프 감지용
+    private float groundRayStartOffset = 0.6f;  // 아래로 살짝 내려가서 Ray 시작
+    private float groundCheckDistance = 0.6f;
 
     void Start()
     {
@@ -41,6 +44,11 @@ public class Player : MonoBehaviour
         LookAround();
         HandleCrouch();
         UpdateMovementState();
+
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        }
     }
 
     void FixedUpdate()
@@ -56,7 +64,7 @@ public class Player : MonoBehaviour
         float currentSpeed;
 
         if (isCrouch)
-            currentSpeed = walkSpeed / 3f; // 앉은 상태일 때 느리게
+            currentSpeed = walkSpeed / 3f; // 앉으면 느리게 걷기
         else if (Input.GetKey(KeyCode.LeftShift))
             currentSpeed = runSpeed;
         else
@@ -67,13 +75,7 @@ public class Player : MonoBehaviour
         velocity.y = rb.linearVelocity.y;
 
         rb.linearVelocity = velocity;
-
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
-        {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
     }
-
 
     void LookAround()
     {
@@ -124,6 +126,10 @@ public class Player : MonoBehaviour
 
     bool IsGrounded()
     {
-        return Physics.Raycast(transform.position, Vector3.down, groundCheckDistance, groundMask);
+        Vector3 origin = transform.position + Vector3.down * groundRayStartOffset;
+        bool hit = Physics.Raycast(origin, Vector3.down, groundCheckDistance, groundMask);
+
+        Debug.DrawRay(origin, Vector3.down * groundCheckDistance, hit ? Color.green : Color.red);
+        return hit;
     }
 }
