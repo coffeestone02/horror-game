@@ -68,11 +68,8 @@ public class PlayerInteraction : MonoBehaviour
                         if (slot.requiredItemName == "firstItem") hasFirstItem = false;
                         else if (slot.requiredItemName == "secondItem") hasSecondItem = false;
 
-                        // 연출용 오브젝트 활성화
-                        if (slot.visualObject != null)
-                        {
-                            slot.visualObject.SetActive(true);
-                        }
+                        // 슬롯에 바치기 처리
+                        slot.PlaceItem();
 
                         Debug.Log($"{slot.requiredItemName} successfully placed on altar.");
                     }
