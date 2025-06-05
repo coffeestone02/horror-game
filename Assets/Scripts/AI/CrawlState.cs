@@ -4,7 +4,7 @@ using Unity.Behavior;
 [BlackboardEnum]
 public enum CrawlState
 {
-    Patrol,
+	Patrol,
 	Chase,
 	Attack
 }
