@@ -19,6 +19,7 @@ public class Player : MonoBehaviour
     public bool isRun = false;
     public bool isCrouch = false;
     public bool isMove = false;
+    public bool isGround = false;
 
     private Rigidbody rb;
     private float targetHeight;
@@ -46,6 +47,7 @@ public class Player : MonoBehaviour
         HandleCrouch();
         Jump();
         Run();
+        IsGrounded();
     }
 
     void FixedUpdate()
@@ -113,8 +115,14 @@ public class Player : MonoBehaviour
     public bool IsGrounded()
     {
         Vector3 origin = transform.position + Vector3.down * groundRayStartOffset;
-        bool hit = Physics.Raycast(origin, Vector3.down, groundCheckDistance, groundMask);
+        RaycastHit result;
+        bool hit = Physics.Raycast(origin, Vector3.down, out result, groundCheckDistance, groundMask);
 
+        if (result.transform)
+        {
+            isGround = (result.transform.tag == "Platform") ? false : true;
+        }
+        
         Debug.DrawRay(origin, Vector3.down * groundCheckDistance, hit ? Color.green : Color.red);
         return hit;
     }

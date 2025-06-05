@@ -13,11 +13,13 @@ public partial class ChaseAction : Action
     [SerializeReference] public BlackboardVariable<GameObject> Target;
 
     private NavMeshAgent agent;
+    private float speed = 6f;
 
     protected override Status OnStart()
     {
         agent = Self.Value.GetComponent<NavMeshAgent>();
         agent.SetDestination(Target.Value.transform.position);
+        agent.speed = speed;
 
         return Status.Running;
     }

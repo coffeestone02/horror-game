@@ -18,6 +18,7 @@ public partial class NavigateRandomPositionAction : Action
     private NavMeshAgent agent;
     private Animator animator;
     private bool isWalk;
+    private float speed = 3.5f;
 
     protected override Status OnStart()
     {
@@ -31,6 +32,7 @@ public partial class NavigateRandomPositionAction : Action
 
         isWalk = (agent.velocity.magnitude <= 1f) ? isWalk = false : isWalk = true;
         animator.SetBool("isWalk", isWalk);
+        agent.speed = speed;
 
         return Status.Running;
     }
