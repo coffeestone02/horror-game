@@ -15,8 +15,6 @@ public partial class CheckTargetDetectCondition : Condition
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<bool> IsStand;
 
-    private bool isClose;
-
     public override bool IsTrue()
     {
         Collider[] targets = Physics.OverlapSphere(Self.Value.transform.position, ChaseDistance); // 범위에 있는 오브젝트들
@@ -34,14 +32,14 @@ public partial class CheckTargetDetectCondition : Condition
             Vector3 direction = (targetTransform.position - Self.Value.transform.position).normalized; // 에이전트와 타겟의 방향
             direction.y = 0; // 좌우 시야만 확인하기 위해 y축 무시(이렇게 하지 않으면 수직 각도도 영향을 줌)
             float angle = Vector3.Angle(Self.Value.transform.forward, direction);
-            Debug.DrawRay(Self.Value.transform.position, direction, Color.red);
             if ((IsStand.Value && CheckStandType(angle)) || (IsStand.Value == false && CheckCrawlType(angle)))
             {
                 return true;
             }
 
-            // 근처에서 달리거나 웅크려있지만 너무 가까이 붙은 경우 true 반환
-            if (isClose)
+            // 근처에서 움직이거나 숙이고 있지만 너무 가까이 붙은 경우 true 반환(현재 거리만 확인함)
+            // 거리에 들어옴 && 플레이어 움직이는 중 -> true 반환
+            if (CheckNear(Vector3.Distance(targetTransform.position, Self.Value.transform.position)))
             {
                 return true;
             }
@@ -50,22 +48,14 @@ public partial class CheckTargetDetectCondition : Condition
         return false;
     }
 
-    private void OnTriggerEnter(Collision other)
+    private bool CheckNear(float distance)
     {
-        if (other.gameObject.tag == "Player")
+        if (distance <= (ChaseDistance / 2))
         {
-            isClose = true;
-            Debug.Log("너무 가까이 붙음");
+            return true;
         }
-    }
 
-    private void OnTriggerExit(Collision other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            isClose = false;
-            Debug.Log("붙었다가 떨어짐");
-        }
+        return false;
     }
 
     // StandType 몬스터의 확인 로직
