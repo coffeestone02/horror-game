@@ -7,7 +7,7 @@ public class Player : MonoBehaviour
     public float runSpeed = 10f;
     public float mouseSensitivity = 2f;
     public float jumpForce = 5f;
-    public float currentSpeed = 5f; // 추가. 현재 이동해야 할 속도
+    public float currentSpeed = 5f;
     public LayerMask groundMask;
 
     [Header("앉기 설정")]
@@ -18,15 +18,15 @@ public class Player : MonoBehaviour
     [Header("플레이어 상태")]
     public bool isRun = false;
     public bool isCrouch = false;
-    public bool isMove = false; // 이름 변경(앉아서 이동하는 경우도 있어서)
+    public bool isMove = false;
 
     private Rigidbody rb;
-    private float targetHeight; 
-    private float currentCameraRotationX = 0; // 추가
-    [SerializeField] private Camera cam; // 추가
+    private float targetHeight;
+    private float currentCameraRotationX = 0;
+    [SerializeField] private Camera cam;
 
     // 점프 감지용
-    private float groundRayStartOffset = 0.6f;  // 아래로 살짝 내려가서 Ray 시작
+    private float groundRayStartOffset = 0.6f;
     private float groundCheckDistance = 0.6f;
 
     void Start()
@@ -55,22 +55,21 @@ public class Player : MonoBehaviour
 
     void Move()
     {
-        float moveX = Input.GetAxisRaw("Horizontal"); // GetAxis -> GetAxisRaw
-        float moveZ = Input.GetAxisRaw("Vertical"); // GetAxis -> GetAxisRaw
+        float moveX = Input.GetAxisRaw("Horizontal");
+        float moveZ = Input.GetAxisRaw("Vertical");
 
-        isMove = Mathf.Abs(moveX) > 0.1f || Mathf.Abs(moveZ) > 0.1f; // 이동하는지 판별
+        isMove = Mathf.Abs(moveX) > 0.1f || Mathf.Abs(moveZ) > 0.1f;
 
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
-        Vector3 velocity = move.normalized * currentSpeed; // 정규화
+        Vector3 velocity = move.normalized * currentSpeed;
         velocity.y = rb.linearVelocity.y;
 
         rb.linearVelocity = velocity;
     }
 
-    // 달리기 함수 추가
     void Run()
     {
-        if (isCrouch) { return; } // 앉으면 못 뜀
+        if (isCrouch) return;
 
         if (Input.GetKey(KeyCode.LeftShift))
         {
@@ -111,7 +110,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    bool IsGrounded()
+    public bool IsGrounded()
     {
         Vector3 origin = transform.position + Vector3.down * groundRayStartOffset;
         bool hit = Physics.Raycast(origin, Vector3.down, groundCheckDistance, groundMask);
@@ -120,7 +119,6 @@ public class Player : MonoBehaviour
         return hit;
     }
 
-    // 수직 카메라 회전
     void LookAround()
     {
         float xRotation = Input.GetAxisRaw("Mouse Y");
@@ -131,7 +129,6 @@ public class Player : MonoBehaviour
         cam.transform.localEulerAngles = new Vector3(currentCameraRotationX, 0f, 0f);
     }
 
-    // 좌우 캐릭터 회전(캐릭터를 회전 함으로써 카메라도 같이 돌아감)
     void CharacterRotation()
     {
         float yRotation = Input.GetAxisRaw("Mouse X");
