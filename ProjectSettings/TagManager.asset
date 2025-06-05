@@ -7,6 +7,9 @@ TagManager:
   - Item
   - Door
   - Altar
+  - Wood
+  - Dirt
+  - Stone
   layers:
   - Default
   - TransparentFX
@@ -16,8 +19,8 @@ TagManager:
   - UI
   - Ground
   - Interactable
-  - 
-  - 
+  - StencilMask
+  - StencilTarget
   - 
   - 
   - 
