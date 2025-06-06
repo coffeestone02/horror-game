@@ -43,7 +43,7 @@ public partial class CheckTargetDetectCondition : Condition
 
             // 근처에서 움직이거나 숙이고 있지만 너무 가까이 붙은 경우 true 반환(현재 거리만 확인함)
             // 거리에 들어옴 && 플레이어 움직이는 중 -> true 반환
-            if (CheckStandNear(Vector3.Distance(targetPos, selfPos)))
+            if (CheckNearStandType(Vector3.Distance(targetPos, selfPos)))
             {
                 return true;
             }
@@ -52,10 +52,10 @@ public partial class CheckTargetDetectCondition : Condition
         return false;
     }
 
-    private bool CheckStandNear(float distance)
+    private bool CheckNearStandType(float distance)
     {
         bool isMove = Target.Value.GetComponent<Player>().isMove;
-        if (IsStand.Value && distance <= (ChaseDistance / 2) && isMove)
+        if ((IsStand.Value && distance <= (ChaseDistance / 2) && isMove) || distance <= 2f)
         {
             return true;
         }

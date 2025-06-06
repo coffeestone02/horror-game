@@ -6,5 +6,4 @@ public enum CrawlState
 {
 	Patrol,
 	Chase,
-	Attack
 }

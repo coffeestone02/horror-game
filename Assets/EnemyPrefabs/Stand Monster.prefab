@@ -6506,6 +6506,9 @@ GameObject:
   - component: {fileID: 8205437369504078854}
   - component: {fileID: 5308758804117182421}
   - component: {fileID: 5835992904897977109}
+  - component: {fileID: 2849311416733591316}
+  - component: {fileID: 2977061059650157384}
+  - component: {fileID: 5057115605956547151}
   m_Layer: 0
   m_Name: Stand Monster
   m_TagString: Untagged
@@ -6521,9 +6524,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8850219917257044370}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 429.9, y: 33.87, z: 368.09}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 577.19, y: 42, z: 423.11}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3084152550211950168}
@@ -6567,7 +6570,7 @@ NavMeshAgent:
   m_Acceleration: 20
   avoidancePriority: 50
   m_AngularSpeed: 999
-  m_StoppingDistance: 0
+  m_StoppingDistance: 2
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -6597,6 +6600,11 @@ MonoBehaviour:
   - rid: 1426185931472503165
   - rid: 1426185987612213631
   - rid: 1426185995913527459
+  - rid: 4924419107845308503
+  - rid: 4924419157674688765
+  - rid: 4924419157674688766
+  - rid: 4924419159395140084
+  - rid: 4924419159568941719
   m_IsInitialised: 0
   m_IsStarted: 0
   references:
@@ -6621,6 +6629,21 @@ MonoBehaviour:
         - {fileID: 0}
         - {fileID: 0}
         - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
+        - {fileID: 0}
     - rid: 1426185931283234888
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -6628,7 +6651,7 @@ MonoBehaviour:
           m_Value0: 5199047667921225600
           m_Value1: 8434989478572539250
         Name: attackDistance
-        m_Value: 1
+        m_Value: 3.5
     - rid: 1426185931283234889
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -6636,7 +6659,7 @@ MonoBehaviour:
           m_Value0: 6350121627020163190
           m_Value1: 1965682347357272616
         Name: chaseDistance
-        m_Value: 6
+        m_Value: 10
     - rid: 1426185931283234890
       type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -6644,7 +6667,7 @@ MonoBehaviour:
           m_Value0: 15492443149626890921
           m_Value1: 16837664189175288594
         Name: fallOutDistance
-        m_Value: 6
+        m_Value: 10
     - rid: 1426185931472503165
       type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
       data:
@@ -6667,8 +6690,48 @@ MonoBehaviour:
         GUID:
           m_Value0: 6834001647096926426
           m_Value1: 8762649225164238040
-        Name: viewAngle
+        Name: viewHeight
         m_Value: 90
+    - rid: 4924419107845308503
+      type: {class: 'BlackboardVariable`1[[UnityEngine.Animator, UnityEngine.AnimationModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 16619557776618857953
+          m_Value1: 7192779971514768871
+        Name: animator
+        m_Value: {fileID: 5496118661659780918}
+    - rid: 4924419157674688765
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 8951167819078577884
+          m_Value1: 14795919538865511775
+        Name: chaseSpeed
+        m_Value: 3
+    - rid: 4924419157674688766
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 1142350674819172054
+          m_Value1: 15497968206165551666
+        Name: patrolSpeed
+        m_Value: 1.5
+    - rid: 4924419159395140084
+      type: {class: 'BlackboardVariable`1[[UnityEngine.GameObject, UnityEngine.CoreModule]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 11499607648416175870
+          m_Value1: 3225220777639393931
+        Name: Gameover UI
+        m_Value: {fileID: 0}
+    - rid: 4924419159568941719
+      type: {class: 'BlackboardVariable`1[[System.Single, mscorlib]]', ns: Unity.Behavior, asm: Unity.Behavior}
+      data:
+        GUID:
+          m_Value0: 16275433552667859490
+          m_Value1: 10413552263828952988
+        Name: currentDistance
+        m_Value: 0
 --- !u!114 &5835992904897977109
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6681,7 +6744,141 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ba8dfd063ea3b14f9c19312d275b87a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  distance: 6
+  distance: 10
+--- !u!114 &2849311416733591316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8850219917257044370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07b263d623d97444290be053da203152, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  behaviorAgent: {fileID: 5308758804117182421}
+  firstPatrolSpeed: 3
+  firstChaseSpeed: 6
+  secondPatrolSpeed: 4
+  secondChaseSpeed: 7
+--- !u!114 &2977061059650157384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8850219917257044370}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da192295db513264592b1cd7bb059696, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 5057115605956547151}
+  searchClips:
+  - {fileID: 8300000, guid: 88ba551e6eb3847279ac2fea8b38e665, type: 3}
+  - {fileID: 8300000, guid: 7592d3abb53e14da8b29227d4b2011e3, type: 3}
+  chaseClips:
+  - {fileID: 8300000, guid: 228a434ca9f954909a9176e45f877eaa, type: 3}
+  - {fileID: 8300000, guid: 8a42266be58db4c518b5d4e47cc0f780, type: 3}
+  behaviorAgent: {fileID: 5308758804117182421}
+--- !u!82 &5057115605956547151
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8850219917257044370}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 50
+  Pan2D: 0
+  rolloffMode: 1
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &8886035771746371671
 GameObject:
   m_ObjectHideFlags: 0
