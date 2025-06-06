@@ -9,6 +9,18 @@ public class AltarManager : MonoBehaviour
 
     private int lastState = -1; // 상태 변경 감지용
 
+    public GameObject standType;
+    public GameObject crawlerType;
+
+    private UpdateEnemyRageState standTypePhase;
+    private UpdateEnemyRageState crawlerTypePhase;
+
+    void Start()
+    {
+        standTypePhase = standType.GetComponent<UpdateEnemyRageState>();
+        crawlerTypePhase = crawlerType.GetComponent<UpdateEnemyRageState>();
+    }
+
     void Update()
     {
         UpdateMonsterState();
@@ -19,11 +31,21 @@ public class AltarManager : MonoBehaviour
         int currentState;
 
         if (isFirstItemPlaced && isSecondItemPlaced)
+        {
             currentState = 3;
+            standTypePhase.SetSecondPhase();
+            crawlerTypePhase.SetSecondPhase();
+        }
         else if (isFirstItemPlaced || isSecondItemPlaced)
+        {
             currentState = 2;
+            standTypePhase.SetFirstPhase();
+            crawlerTypePhase.SetFirstPhase();
+        }
         else
+        {
             currentState = 1;
+        }
 
         // 상태가 바뀌었을 때만 디버그 출력
         if (currentState != lastState)

@@ -6,20 +6,20 @@ using Unity.Properties;
 using UnityEngine.AI;
 
 [Serializable, GeneratePropertyBag]
-[NodeDescription(name: "Chase", story: "[Self] Navigate To [Target]", category: "Action", id: "a403f30a2feac382017b39125a467ab6")]
+[NodeDescription(name: "Chase", story: "[Self] Navigate To [Target] ( Chase Speed: [ChaseSpeed] )", category: "Action", id: "a403f30a2feac382017b39125a467ab6")]
 public partial class ChaseAction : Action
 {
     [SerializeReference] public BlackboardVariable<GameObject> Self;
     [SerializeReference] public BlackboardVariable<GameObject> Target;
+    [SerializeReference] public BlackboardVariable<float> ChaseSpeed;
 
     private NavMeshAgent agent;
-    private float speed = 6f;
 
     protected override Status OnStart()
     {
         agent = Self.Value.GetComponent<NavMeshAgent>();
         agent.SetDestination(Target.Value.transform.position);
-        agent.speed = speed;
+        agent.speed = ChaseSpeed.Value;
 
         return Status.Running;
     }
