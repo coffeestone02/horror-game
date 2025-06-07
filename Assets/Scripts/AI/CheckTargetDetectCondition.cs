@@ -68,7 +68,7 @@ public partial class CheckTargetDetectCondition : Condition
     {
         if(IsStand.Value == false) { return false; }
 
-        if (angle <= 120f * 0.5f && Target.Value.GetComponent<Player>().isCrouch == false) // Target.Value.isCrouch == false 조건 추가 예정
+        if (angle <= 120f * 0.5f && Target.Value.GetComponent<Player>().isCrouch == false)
         {
             Debug.Log("플레이어 포착");
             return true;
@@ -83,7 +83,6 @@ public partial class CheckTargetDetectCondition : Condition
     {
         if(IsStand.Value) { return false; }
 
-        // distance <= chaseDistance && isGround -> true 반환
         if (Target.Value.GetComponent<Player>().isGround)
         {
             Debug.Log("플레이어 포착2");

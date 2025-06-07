@@ -32,7 +32,7 @@ public class EnemyAudio : MonoBehaviour
                     yield return new WaitForSeconds(Random.Range(3f, 8f));
                     break;
                 case EnemyState.Chase:
-                    idx = Random.Range(0, chaseClips.Length); Debug.Log("쫓아가면서 울어재끼기");
+                    idx = Random.Range(0, chaseClips.Length);
                     audioSource.PlayOneShot(chaseClips[idx]);
                     yield return new WaitForSeconds(Random.Range(2f, 4f));
                     break;
