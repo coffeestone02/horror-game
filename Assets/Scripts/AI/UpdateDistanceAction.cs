@@ -5,6 +5,7 @@ using Action = Unity.Behavior.Action;
 using Unity.Properties;
 using UnityEngine.AI;
 
+// 에이전트와 타겟 사이의 거리를 업데이트하는 액션
 [Serializable, GeneratePropertyBag]
 [NodeDescription(name: "UpdateDistance", story: "Update [Self] and [Target] [CurrentDistance]", category: "Action", id: "e50f5d54997ff6ca564cdaeed7c09e73")]
 public partial class UpdateDistanceAction : Action

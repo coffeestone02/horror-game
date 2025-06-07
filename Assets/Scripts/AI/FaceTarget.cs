@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
+// 회전 문제가 있는 NavMeshAgent의 방향을 올바르게 고쳐주기 위한 스크립트
 public class FaceTarget : MonoBehaviour
 {
     public NavMeshAgent agent;

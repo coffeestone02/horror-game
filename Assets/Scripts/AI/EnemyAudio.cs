@@ -2,19 +2,20 @@ using System.Collections;
 using Unity.Behavior;
 using UnityEngine;
 
+// 적의 오디오 관리 스크립트
 public class EnemyAudio : MonoBehaviour
 {
     [SerializeField] private AudioSource audioSource;
-    [SerializeField] private AudioClip[] searchClips;
-    [SerializeField] private AudioClip[] chaseClips;
+    [SerializeField] private AudioClip[] searchClips; // 탐색 중 소리
+    [SerializeField] private AudioClip[] chaseClips; // 추적 중 소리
     [SerializeField] private BehaviorGraphAgent behaviorAgent;
-    private EnemyState enemyState = EnemyState.Idle;
+    private EnemyState enemyState = EnemyState.Idle; // 현재 적 상태
 
     void Start()
     {
         StartCoroutine(PlaySound());
     }
-    
+
     IEnumerator PlaySound()
     {
         while (true)
@@ -22,7 +23,8 @@ public class EnemyAudio : MonoBehaviour
             int idx;
             BlackboardVariable variable;
             behaviorAgent.GetVariable("currentState", out variable);
-            enemyState = (EnemyState)variable.ObjectValue;
+            enemyState = (EnemyState)variable.ObjectValue; // 현재 적 상태 가져오기
+
             switch (enemyState)
             {
                 case EnemyState.Idle:
