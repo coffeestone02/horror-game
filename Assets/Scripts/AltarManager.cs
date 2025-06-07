@@ -5,20 +5,23 @@ public class AltarManager : MonoBehaviour
     public bool isFirstItemPlaced = false;
     public bool isSecondItemPlaced = false;
 
-    public int monsterState = 1; // 1´Ü°è: ¾Æ¹«°Íµµ ¾øÀ½, 2´Ü°è: ÇÏ³ª, 3´Ü°è: µÑ ´Ù
+    public int monsterState = 1; // 1ï¿½Ü°ï¿½: ï¿½Æ¹ï¿½ï¿½Íµï¿½ ï¿½ï¿½ï¿½ï¿½, 2ï¿½Ü°ï¿½: ï¿½Ï³ï¿½, 3ï¿½Ü°ï¿½: ï¿½ï¿½ ï¿½ï¿½
 
-    private int lastState = -1; // »óÅÂ º¯°æ °¨Áö¿ë
+    private int lastState = -1; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 
-    public GameObject standType;
-    public GameObject crawlerType;
+    public GameObject standType1;
+    public GameObject standType2;
+    public GameObject standType3;
 
-    private UpdateEnemyRageState standTypePhase;
-    private UpdateEnemyRageState crawlerTypePhase;
+    private UpdateEnemyRageState standTypePhase1;
+    private UpdateEnemyRageState standTypePhase2;
+    private UpdateEnemyRageState standTypePhase3;
 
     void Start()
     {
-        standTypePhase = standType.GetComponent<UpdateEnemyRageState>();
-        crawlerTypePhase = crawlerType.GetComponent<UpdateEnemyRageState>();
+        standTypePhase1 = standType1.GetComponent<UpdateEnemyRageState>();
+        standTypePhase2 = standType2.GetComponent<UpdateEnemyRageState>();
+        standTypePhase3 = standType3.GetComponent<UpdateEnemyRageState>();
     }
 
     void Update()
@@ -33,24 +36,26 @@ public class AltarManager : MonoBehaviour
         if (isFirstItemPlaced && isSecondItemPlaced)
         {
             currentState = 3;
-            standTypePhase.SetSecondPhase();
-            crawlerTypePhase.SetSecondPhase();
+            standTypePhase1.SetSecondPhase();
+            standTypePhase2.SetSecondPhase();
+            standTypePhase3.SetSecondPhase();
         }
         else if (isFirstItemPlaced || isSecondItemPlaced)
         {
             currentState = 2;
-            standTypePhase.SetFirstPhase();
-            crawlerTypePhase.SetFirstPhase();
+            standTypePhase1.SetFirstPhase();
+            standTypePhase2.SetFirstPhase();
+            standTypePhase3.SetFirstPhase();
         }
         else
         {
             currentState = 1;
         }
 
-        // »óÅÂ°¡ ¹Ù²î¾úÀ» ¶§¸¸ µð¹ö±× Ãâ·Â
+        // ï¿½ï¿½ï¿½Â°ï¿½ ï¿½Ù²ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
         if (currentState != lastState)
         {
-            Debug.Log("¸ó½ºÅÍ »óÅÂ ´Ü°è: " + currentState);
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ü°ï¿½: " + currentState);
             lastState = currentState;
         }
 
