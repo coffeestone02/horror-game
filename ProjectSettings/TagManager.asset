@@ -10,6 +10,8 @@ TagManager:
   - Wood
   - Dirt
   - Stone
+  - Platform
+  - Car
   layers:
   - Default
   - TransparentFX
